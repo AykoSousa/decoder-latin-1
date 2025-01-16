@@ -1,35 +1,40 @@
 # decode-hex-lib
 
-**Biblioteca para decodificar strings hexadecimais em caracteres UTF-8.**
+Library to decode hexadecimal strings into UTF-8 characters.
 
-## Descrição
-Esta biblioteca fornece uma função para decodificar strings que contenham códigos hexadecimais precedidos por `%` (por exemplo, `%F3`) em seus respectivos caracteres UTF-8.
+## Description
+This library provides a function to decode strings containing hexadecimal codes preceded by % (e.g., %F3) into their respective UTF-8 characters.
 
-## Instalação
+Link to Latin-1 character table: https://en.wikipedia.org/wiki/ISO/IEC_8859-1
+
+## Installation
 ```bash
 npm install decode-hex-lib
+```
 
+## Import and usage
+```javascript
 import { decodeHex } from 'decode-hex-lib';
 
-const encodedString = "%F3%E3%20JavaScript";
+const encodedString = "S%E3o%20Paulo";
 const decodedString = decodeHex(encodedString);
-console.log(decodedString); // Output: óã JavaScript
+console.log(decodedString); // Output: São Paulo
 ```
 
 ## API
 decodeHex(encodedString: string): string
-Decodifica uma string hexadecimal para uma string UTF-8.
+Decodes a hexadecimal string to a UTF-8 string.
 
-encodedString: A string a ser decodificada.
-Retorna: A string decodificada.
+encodedString: The string to be decoded.
+Returns: The decoded string.
 
 ```javascript
 decodeHex("Gest%E3o"); // Retorna: Gestão
 decodeHex("%C9poca"); // Retorna: Época
 ```
 
-## Testes
-Para executar os testes, utilize:
+## Tests
+To run the tests, use:
 ```bash
 npm test
 ```
