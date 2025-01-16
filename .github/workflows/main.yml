@@ -3,6 +3,8 @@ name: CI/CD
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build-and-test:
@@ -31,12 +33,8 @@ jobs:
       run: npm install
 
     - name: Authenticate to npm
-      uses: npm-publish/setup-registry@v1
-      with:
-        registry_url: ${{ secrets.NPM_REGISTRY_URL }}
-        token: ${{ secrets.NPM_TOKEN }}
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
     - name: Publish to npm
       run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
